@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Cash out</title>
+        <style>
+            .BImage{background-image: url("resources/images/CashOut.jpg");}
+        </style>
+    </h:head>
+    <h:body styleClass="BImage">
+        <br/><br/><br/><br/><br/><br/><br/><br/>
+        <h:form>
+            <p>Ukupna cijena Vaše kupovine iznosi: #{purchaseManagedBean.totalPrice()}  KM</p>
+            <h:outputText value="Unesite broj Vaše kartice:"/>
+            <h:inputText id="cardNumber" value="#{purchaseManagedBean.cardNumber}" required="true" requiredMessage="  Broj računa je obavezan"/>
+            <h:message for="cardNumber" style="color: red"/>
+            <br/><br/>
+            <p>Za potvrdu Vaše kupovine pritisnite: <h:commandButton value="PLATI" action="welcome.xhtml" actionListener="#{purchaseProductManagedBean.savePurchases(loginManagedBean.username)}"/></p>
+        </h:form>   
+    </h:body>
+</html>
+

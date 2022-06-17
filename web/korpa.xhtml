@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Korpa</title>
+        <style>
+            .BImage{background-image: url("resources/images/CartScreen.jpg");}
+        </style>
+    </h:head>
+    <h:body styleClass="BImage">
+        <br/><br/><br/>
+        <h3>Dodani mobiteli u korpi</h3>
+        <h:form>
+            <h:dataTable border="2" style="border-collapse: collapse" id="korpaId" value="#{productManagedBean.shoppingCartItems}" var="shoppingCartItem">
+                <h:column>
+                    <f:facet name="header">Mobiteli u korpi</f:facet>
+                        #{shoppingCartItem.product.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Jedinična cijena</f:facet>
+                        #{shoppingCartItem.product.price}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Količina</f:facet>
+                        #{shoppingCartItem.quantity}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Ukupna cijena</f:facet>
+                        #{shoppingCartItem.totalPrice}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Izbaci iz korpe</f:facet>
+                    <h:commandButton value="Izbaci jedan artikl" actionListener="#{productManagedBean.removeProductFromCart(shoppingCartItem)}">
+                        <f:ajax execute="@form" render="@form"/>
+                    </h:commandButton>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        <br/>
+        <h:form>
+            <h:commandButton value="Kupi" action="#{loginManagedBean.loginFromKorpa()}"/>
+        </h:form>
+    </h:body>
+</html>
+
